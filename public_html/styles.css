@@ -1,0 +1,996 @@
+@font-face {
+    font-family: 'Black Ops One';
+    src: url('fonts/BlackOpsOne-Regular.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap optional; /* Чтобы страница не "мёрла" при загрузке */
+}
+@font-face {
+    font-family: 'Cannonade';
+    src: url('fonts/Cannonade.ttf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap optional; /* Чтобы страница не "мёрла" при загрузке */
+    
+}
+
+
+
+  .g-recaptcha, .g-recaptcha div{ 
+    overflow: hidden; 
+    max-width: 100%; 
+    } 
+   .g-recaptcha iframe, body > div[style]:last-of-type
+   { transform: scale(0.75);
+   transform-origin: left top;
+   }
+
+
+
+
+
+
+body {
+    font-family: 'Noto Sans', sans-serif;
+
+
+}
+
+textarea{
+    font-family: 'Noto Sans', sans-serif;
+}
+
+
+.mainButton {
+    font-family: 'Black Ops One' ; /* Или sans-serif */
+    font-size:20px;
+    color: #ffffff;
+    text-decoration: none;
+    letter-spacing: 1px;
+}
+h1, h2, h3 {
+    font-weight: bold;
+}
+
+p, a, span {
+    font-weight: normal;
+}
+
+.text-button.active,
+.side-menu a.active {
+     /* Акцентный цвет */
+     background-color: rgba(255, 255, 255, 0.747);
+    color: white;
+    font-weight: bold;
+    border-radius: 5px;
+    padding: 5px 10px;
+}
+/* Стили для модального окна */
+.modal {
+  display: block;
+    position: static;
+    pointer-events: auto;
+    z-index: 1000; /* Поверх всех элементов */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7); /* Полупрозрачный фон */
+}
+
+main {
+    line-height: 1.6; /* стандартный межстрочный интервал */
+    
+}
+
+.modal-content {
+    max-width: 600px;
+    margin: 40px auto;
+    padding: 20px;
+    background-color: #2c2c2c;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+}
+.form-section {
+    max-width: 600px;
+    margin: 40px auto;
+    padding: 20px;
+    background-color: #2c2c2c;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+}
+
+
+
+
+/* Стили для кнопки отправки */
+.submit-button {
+    background-color: rgb(159, 220, 255);
+    color: black;
+    border: none;
+    padding: 12px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: 100%; /* Кнопка занимает всю ширину формы */
+    margin-top: 10px; /* Добавляем отступ сверху */
+}
+
+.submit-button:hover {
+    background-color: rgb(0, 17, 255);
+}
+
+
+
+
+
+/* Стили для кнопки отправки */
+.submit-button {
+    background-color: rgb(159, 220, 255);
+    color: black;
+    border: none;
+    padding: 12px; /* Увеличиваем высоту кнопки */
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: 100%; /* Кнопка занимает всю ширину формы */
+    margin-top: 10px; /* Добавляем отступ сверху */
+}
+
+.submit-button:hover {
+    background-color: rgb(0, 17, 255);
+}
+
+/* Стили для текстовых полей */
+input, select, textarea {
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    background-color: #333;
+    color: white;
+    width: 100%; /* Поле занимает всю ширину формы */
+    box-sizing: border-box; /* Учитываем padding и border в ширине */
+}
+
+textarea {
+    resize: none; /* Запрещаем изменение размера текстового поля */
+    height: 80px; /* Фиксированная высота для текстового поля */
+}
+
+/* Стили для меток */
+label {
+    font-size: 16px;
+    margin-bottom: 5px; /* Добавляем отступ между меткой и полем */
+    display: block; /* Метка занимает всю ширину */
+}
+
+
+
+
+
+
+
+
+
+/* Стили для wrapper */
+html, body {
+    height: 100%;
+    min-height: 100%;
+}
+html {
+   
+    width: 100%;
+    overflow-y: scroll; /* Предотвращаем "прыжки" */
+}
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Минимальная высота страницы */
+}
+
+
+
+
+
+
+
+/* Глобальные сбросы */
+* {
+    box-sizing: border-box;
+  }
+  
+
+  
+  /* Flex-контейнер на всю высоту */
+  .wrapper {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+  
+  
+
+
+.map-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+}
+
+/* Стили для модального окна */
+.modal {
+    display: none; /* Скрыто по умолчанию */
+    position: fixed;
+    z-index: 1000; /* Поверх всех элементов */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7); /* Полупрозрачный фон */
+}
+
+
+
+
+
+
+/* Стили для формы */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+label {
+    font-size: 16px;
+}
+
+input {
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.submit-button {
+    background-color: rgb(159, 220, 255);
+    color: black;
+    border: none;
+    padding: 10px;
+    font-size: 18px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.submit-button:hover {
+    background-color: rgb(0, 17, 255);
+}
+
+
+
+
+
+
+
+
+/* Применение анимации к блоку main */
+main {
+
+    flex: 1; /* Растягиваем основной контент, чтобы он заполнил оставшееся пространство */
+    
+
+    background-color: rgba(30, 30, 30, 0.8); /* Черная подложка для текста */
+    max-width: 50%;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+
+    box-shadow: 0% 4% 8% rgba(0, 0, 0, 0.5);
+    padding: 40px 20px;
+    
+
+
+
+    background-color: rgba(30, 30, 30, 0.8);
+ 
+}
+
+
+
+ 
+
+.footer {
+
+    background-color: #1e1e1e;
+    text-align: center;
+    padding: 10px;
+    color: white;
+
+}
+/* Общие стили */
+body{
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    padding: 0;
+    background: url(image/background-cars.jpg) no-repeat center center fixed; 
+    background-size: cover; /* Заполняет всю ширину и высоту экрана */
+    background-position: center; /* Центрирует изображение */
+ 
+   
+} 
+
+
+
+header .cap .mainButton  {
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+}
+
+
+
+.menu {
+    background-color: rgba(30, 30, 30, 0.8); /* Темно-серый фон для меню */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+        flex-wrap: wrap;
+        
+        padding: 5px;
+        
+     
+       
+    
+}
+
+.menu a.text-button {
+    font-size: 18px;
+    padding: 10px;
+    border-radius: 5px;
+    background: rgb(255, 255, 255); /* мягкий голубой градиент */
+    background-clip: text;
+    color: transparent; /* делаем текст прозрачным, чтобы показывался градиент */
+    transition: background-color 0.5s ease, color 0.5s ease;
+ 
+}
+
+.menu a.text-button:hover {
+  
+   background-color: rgb(2, 132, 255);
+}
+
+.menu a.text-button.active {
+   background-color: rgb(2, 132, 255);
+   font-weight: bold;
+}
+
+/* Основной контент */
+
+
+main img {
+    width: 100%;
+    max-width: 800px;
+    height: auto;
+    display: block;
+    margin: 10px auto;
+    border-radius: 10px;
+}
+
+
+main p, main ul, main table {
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+main ul {
+   
+    list-style-type: disc;
+    padding-left: 15px;
+}
+
+main table {
+    width: 100%;
+   
+    border-collapse: collapse;
+    
+    margin-bottom: 20px;
+}
+
+main table th, main table td {
+    border: 1px solid white;
+    padding: 10px;
+    text-align: left;
+}
+
+main table th {
+    background-color: rgb(159, 220, 255);
+    color: black;
+}
+
+main blockquote {
+    background-color: #333;
+    padding: 15px;
+    border-left: 5px solid rgb(159, 220, 255);
+    margin: 20px 0;
+    border-radius: 5px;
+}
+
+.cap {
+    background-image: url('image/cap.png');
+       background-size: cover;
+        background-repeat: repeat; /* Запрещает повторение */
+   
+    height: 100px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center; /* Выравнивание по вертикали */
+    
+}
+
+
+
+
+
+ .top-left {
+    display: flex;
+    align-items: center; /* вертикальное центрирование */
+    gap: 0px; /* расстояние между картинкой и кнопкой */
+    margin-left: 6%;
+  }
+
+ .logo {
+    height: auto; /* высота логотипа */
+    width: 100px; /* сохраняет пропорции */
+   
+}
+
+ .mainButton {
+  text-decoration: none;
+  display: inline-block;
+    
+
+}
+
+
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Вся высота экрана */
+  }
+  
+.text-button {
+    background: none; 
+    border: none; 
+    font-size: 20px;
+    color: white;
+    cursor: pointer;
+
+}
+
+
+
+
+.text-button:active {
+background-color: rgb(159, 220, 255);
+border-radius: 10px;
+}
+
+/* ==== Адаптация для мобильных устройств ==== */
+
+
+.phone-info {
+    margin-left: auto;
+    text-align: right;
+    font-size: 1rem;
+    color: white;
+    margin-right: 6%;
+    display: flex;
+    flex-direction: column;
+    
+    gap: 8px;
+}
+
+.phone-item {
+    display: flex;
+    align-items: center;     /* вертикальное центрирование */
+    white-space: nowrap;     /* запрещаем перенос содержимого */
+    min-width: max-content; /* сохраняем минимальную ширину */
+    gap: 10px;
+
+}
+
+
+.whatsapp-icon {
+    width: 24px;
+    height: auto;
+
+}
+
+.whatsapp-link:hover .whatsapp-icon {
+    transform: scale(1.1);
+}
+
+.whatsapp-link {
+    background-color: transparent; /* явно указываем, что фона быть не должно */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    transition: transform 0.3s ease;
+}
+
+p {
+ 
+     text-justify: inter-word; /* Браузер регулирует только пробелы между словами */
+}
+
+body {
+
+    font-size: 16px;
+    line-height: 1.6;
+    color: #ffffff;
+    background-color: white;
+}
+
+
+a {
+    text-decoration: none;
+}
+
+.side-button{
+    margin-left: 13%;
+    -webkit-tap-highlight-color: rgba(0,0,0,0); /* Полностью убираем подсветку */
+}
+
+.side-menu {
+   display: none;
+}
+
+
+
+/* Изначально текст белый */
+.phone-link {
+  color: #fff; /* белый цвет */
+  text-decoration: none; /* по желанию убрать подчеркивание */
+  font-weight: bold; /* по желанию */
+  transition: background-color 0.5s ease, color 0.5s ease;
+  display: inline-block;
+}
+
+/* При наведении — создаем градиентный эффект только внутри текста */
+.phone-link:hover {
+  background: linear-gradient(90deg, #0d6efd, #339af0); /* мягкий голубой градиент */
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent; /* делаем текст прозрачным, чтобы показывался градиент */
+}
+
+.parts-form label {
+    font-size: 16px;
+    display: block;
+    margin-bottom: 8px;
+}
+
+.parts-form input,
+.parts-form textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: #333;
+    color: white;
+    font-size: 16px;
+    box-sizing: border-box;
+}
+
+.parts-form textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+.submit-button {
+    background-color: rgb(159, 220, 255);
+    color: black;
+    border: none;
+    padding: 12px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: 100%;
+}
+
+.submit-button:hover {
+    background-color: rgb(0, 17, 255);
+}
+
+.diagnostic-info{
+ 
+    text-justify: inter-word; /* Браузер регулирует только пробелы между словами */
+}
+section {
+   
+     text-justify: inter-word; /* Браузер регулирует только пробелы между словами */
+    text-justify: inter-word;
+    text-rendering: optimizeLegibility;
+}
+
+ol{
+ 
+  padding: 15px;
+}
+
+main {
+    padding: 20px;
+   
+    margin: auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    max-width: 700px;
+    width: 100%;
+   
+}
+
+
+
+
+
+
+.line{ 
+    
+    
+
+    font-family: 'Black Ops One', cursive;
+    font-size: 18px;
+    color: white;
+    margin: auto;       /* центрируем блок в родителе */
+    
+    
+}
+
+
+.phone-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap; /* разрешаем перенос блоков */
+    justify-content: space-between;
+  }
+  
+
+.contact-details {
+    display: flex;
+    align-items: center;
+    gap: 8px; /* расстояние между номером и именем */
+}
+
+
+
+@media (max-width: 768px) {
+    .contact-details {
+        flex-direction: column;
+        align-items: flex-end;
+        gap: 0;
+    }
+
+    .contact-name {
+
+        font-size: 16px;
+    }
+
+    .phone-number {
+        font-size: 16px;
+    }
+}
+  
+
+
+
+
+
+
+@media (min-width: 769px) {
+    .line {
+        display: none;
+    }
+
+main h1 {
+    
+    text-align: center;
+    margin: auto;
+    font-size: 24px;
+    color: rgb(159, 220, 255);
+
+    }
+    
+}
+    /* ==== Показываем бургер только на мобильных === */
+@media (max-width: 768px) {
+   
+    
+
+
+    main {
+       
+        max-width: 100%; /* Расширяем основной блок на мобильнике */
+        margin-top: auto;
+    }
+    section{ 
+        margin-top: 30px;
+    }
+   
+
+    .logo {
+        display: none;
+    
+    }
+    .cap {
+         background-image: url('image/cap-phone.png');
+       background-size: cover;
+        background-repeat: repeat; /* Запрещает повторение */
+   
+  
+        height: 130px;
+    }
+
+    .top-left {
+        margin-left: 15px;
+    }
+    
+   
+  
+
+
+    main {
+        margin-right: 10px;
+    
+    }
+
+    main h1 {
+        font-size: 24px;
+    }
+    
+    .burger {
+        display: none; /* Скрыто по умолчанию */
+        height: 40px;
+        width: 150px;
+        margin-left: auto;
+        margin-right: 10px;
+        background: rgba(255, 255, 255, 0.137);
+        border-radius: 50px;
+        border: 1px solid #ffffff; /* Обводка — толщина, стиль, цвет */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: all 0.3s ease;
+       
+      }
+      
+
+/* Медиа-запрос для мобильных */
+      .top-left {
+        margin-right: 4%;
+      }
+    .mainButton {
+        font-size: 20px;
+        -webkit-tap-highlight-color: rgba(0,0,0,0); /* Полностью убираем подсветку */
+
+    }
+
+    .footer {
+        padding: 15px;
+        font-size: 14px;
+      }
+
+     
+    .submit-button {
+        font-size: 14px; /* Уменьшаем размер текста на кнопке */
+        padding: 10px; /* Уменьшаем высоту кнопки */
+    }
+
+    input, select, textarea {
+        font-size: 14px; /* Уменьшаем размер текста в полях */
+    }
+
+
+
+    .footer-section {
+        width: 100%;
+        text-align: center;
+ }
+
+ .burger {
+    display: flex; /* Показываем только на мобильных */
+    -webkit-tap-highlight-color: rgba(0,0,0,0); /* Полностью убираем подсветку */
+ }
+
+
+
+.menu {
+        display: none ;
+    }
+   
+ 
+
+
+
+
+
+/* ==== Боковое меню ==== */
+.side-menu {
+    position: fixed;
+    top: 0;
+    right: -300px; /* скрыто за экраном */
+    width: 300px;
+    height: 100%;
+    background: linear-gradient(
+        to left,
+        #0f2967, 
+        rgba(15, 41, 103, 0.9) 35%,    /* почти прозрачно */  
+        rgba(15, 41, 103, 0.8) 45%,    /* почти прозрачно */
+        rgba(15, 41, 103, 0.7) 55%,    /* почти прозрачно */            /* основной цвет */
+        rgba(15, 41, 103, 0.6) 65%,    /* начало затухания */
+        rgba(15, 41, 103, 0.5) 75%,    /* усиление прозрачности */
+        rgba(15, 41, 103, 0.4) 85%,    /* почти прозрачно */
+        rgba(15, 41, 103, 0.3) 90%,    /* почти прозрачно */
+   
+        transparent 100%            /* полная прозрачность у края */
+    );
+    padding: 20px;
+    z-index: 999;
+    transition: right 0.4s ease; /* Увеличил время чуть для большей плавности */
+    display: block; /* display: none заменим через JS */
+    overflow: hidden;
+}
+
+/* Активное состояние */
+.side-menu.active {
+    right: 0; /* выдвигаем меню на экран */
+}
+
+.side-menu ul {
+    left: 0;
+    list-style: none;
+    padding: 0;
+    margin-top: 40px;
+}
+
+.side-menu ul li {
+    margin-bottom: 20px;
+}
+
+.side-menu ul li a {
+    color: white;
+    font-size: 18px;
+    text-decoration: none;
+}
+
+.side-menu ul li {
+    width: 100%;
+    text-align: center;
+}
+.close-btn {
+    line-height: 1;
+    display: flex;           /* Для центрирования внутри div */
+    align-items: center;
+    justify-content: center;
+    width: 35px;
+    height: 35px;
+    cursor: pointer;
+    color: white;
+    background-color: rgba(255, 255, 255, 0.1); /* Лёгкий фон вокруг крестика */
+    border-radius: 50%;      /* Круглая форма */
+    transition: all 0.3s ease;
+    position: absolute;
+    top: 13px;               /* Подняли повыше */
+    right: 15px;             /* Отступ от правого края */
+    z-index: 999;
+}
+
+/* При наведении делаем чуть ярче */
+.close-btn:hover {
+    color: #ffffff;
+    background-color: rgba(255, 255, 255, 0.2);
+}
+.menu-header .close-btn {
+    font-size: 28px;
+    color: white;
+    cursor: pointer;
+    float: right;
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    z-index: 998;
+    pointer-events: none;
+}
+
+.side-menu.active {
+    
+    right: 0;
+}
+
+.overlay.active {
+    display: block;
+}
+
+
+.side-menu ul li a {
+    color: white; /* Белый текст */
+    font-size: 18px;
+    text-decoration: none;
+    display: block;
+    padding: 10px 15px;
+    border: 2px solid white; /* Белая рамка */
+    border-radius: 50px; /* Делаем овал */
+    text-align: center;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+
+
+.phone-item {
+    gap: 5px;
+}
+.phone-info {
+    margin-right: 4%;
+    font-size: 14px;
+}
+
+/* ==== Активное состояние бокового меню ==== */
+.side-menu.active {
+    right: 0;
+    display: block;
+}
+
+.overlay.active {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+}
+
+}
+
+@media (max-width: 340px) { 
+    .mainButton {
+        font-size: 16px;
+
+
+    }
+
+        .phone-info {
+        margin-right: 4%;
+        font-size: 12px;
+    }
+
+}
+@media (max-width:768px) {
+main h1 {
+    
+    text-align: left;
+    margin: auto;
+    font-size: 22px;
+    color: rgb(159, 220, 255);
+
+    }
+}

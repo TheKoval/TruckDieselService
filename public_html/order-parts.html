@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Грузовой дизельный сервис</title>
+    <link rel="stylesheet" href="styles.css">
+<link rel="preload" href="fonts/BlackOpsOne-Regular.otf" as="font" crossorigin>
+<link rel="preload" href="fonts/Cannonade.ttf" as="font" crossorigin>
+
+<script src="https://www.google.com/recaptcha/api.js " async defer></script>
+
+
+
+    <script type="module" src="main.js"></script>
+</head>
+
+<body>
+    <header>
+         <div class="cap">
+
+            <div class="top-left">
+                <img class="logo" src="image/logo.png" alt="logo">
+                <a href="index.html" class="mainButton">ГРУЗОВОЙ ДИЗЕЛЬНЫЙ СЕРВИС</a>
+            </div>
+            <div class="phone-info">
+                <div class="phone-item">
+                  <div class="contact-details">
+                   
+              <a href="tel:+79282611590" class="phone-link" > +7 (928) 261-15-90</a>
+                 <span class="contact-name">Алексей</span>
+
+                  </div>
+                  <a href="https://wa.me/79282611590 " target="_blank" class="whatsapp-link" title="Написать в WhatsApp">
+                    <img src="image/WhatsApp.png" alt="WhatsApp" class="whatsapp-icon">
+                  </a>
+                </div>
+              
+
+                
+                <div class="phone-item">
+                  <div class="contact-details">
+                    
+                <a href="tel:+79064336856" class="phone-link"> +7 (906) 433-68-56</a>
+                  <span class="contact-name">Руслан</span>
+                  </div>
+                  <a href="https://wa.me/79064336856 " target="_blank" class="whatsapp-link" title="Написать в WhatsApp">
+                    <img src="image/WhatsApp.png" alt="WhatsApp" class="whatsapp-icon">
+                  </a>
+                </div>
+              </div>
+            </div>
+        
+
+<!-- Выезжающее меню -->
+<nav class="side-menu" id="sideMenu">
+    
+    <div class="menu-header">
+        <span class="close-btn" id="closeBtn">&times;</span>
+    </div>
+    
+   <ul>
+        <div class="side-button">
+        <li><a href="/home">Главная</a></li>
+        <li><a href="/about">О нас</a></li>
+        <li><a href="/contacts">Контакты</a></li>
+        <li><a href="/order-parts">Грузовые запчасти</a></li>
+        <li><a href="/diagnostic">Запись на диагностику</a></li>
+      </div>
+    </ul>
+</nav>
+
+
+
+
+<!-- Оверлей -->
+<div class="overlay" id="overlay"></div>
+
+
+
+</header>
+  <div class="menu">
+        <a href="/home" class="text-button">Главная</a>
+        <span style="margin: 5px; user-select: none;color: white;">|</span>
+        <a href="/about" class="text-button">О нас</a>
+        <span style="margin: 5px; user-select: none;color: white;">|</span>
+        <a href="/contacts" class="text-button">Контакты</a>
+        <span style="margin: 5px; user-select: none;color: white;">|</span>
+        <a href="/order-parts" class="text-button">Грузовые запчасти</a>
+        <span style="margin: 5px; user-select: none;color: white;">|</span>
+        <a href="/diagnostic" class="text-button">Запись на диагностику</a>
+    </div>
+<main>
+
+<!-- Бургер-меню -->
+<div class="burger" id="burger">
+    <div class="line">Меню</div>
+</div>
+
+
+
+    
+    
+
+
+
+   
+
+    <section>
+    <h1>Заказ запчастей с консультацией специалиста</h1>
+<p>
+    Иногда сложно определиться с выбором нужной детали для грузового автомобиля. 
+    Чтобы избежать ошибок и быть уверенным в качестве — наши специалисты помогут вам подобрать точную запчасть под вашу модель техники.
+</p>
+
+
+<ol>
+    <h2>Как это работает?</h2>
+    <li>Вы описываете проблему или указываете модель автомобиля.</li>
+    <li>Наш специалист связывается с вами и уточняет все детали.</li>
+    <li>Мы предлагаем проверенные решения и подбираем оригинальные / совместимые запчасти.</li>
+    <li>Вы получаете товар быстро и с гарантией.</li>
+</ol>
+
+<h2>Преимущества заказа через специалиста:</h2>
+<ul>
+    <li>✔️ Гарантия точного подбора</li>
+    <li>✔️ Подходящая цена без наценок</li>
+    <li>✔️ Быстрая доставка по Краснодару и регионам России</li>
+    <li>✔️ Возможность установки в нашем сервисе</li>
+</ul>
+
+<p>
+    Если вы не уверены в выборе — не рискуйте, заполните заявку ниже, и мы сами свяжемся с вами!
+</p>
+
+</section>
+
+
+<section class="form-section">
+    <h2 style="text-align: center; margin-bottom: 30px;">Заказать запчасть у специалиста</h2>
+
+    <form id="partsOrderForm">
+        <label for="phone">Телефон:</label>
+        <input type="tel" id="phone" name="phone" required placeholder="+7 (___) ___-__-__" pattern="\+7\s?[\(]{0,1}[0-9]{3}[\)]{0,1}\s?\d{3}[-]{0,1}\d{2}[-]{0,1}\d{2}">
+
+        <label for="carBrand">Марка автомобиля:</label>
+        <input type="text" id="carBrand" name="carBrand" placeholder="Например: ISUZU, MAN, HYUNDAI" required>
+
+        <label for="carModel">Модель:</label>
+        <input type="text" id="carModel" name="carModel" placeholder="Укажите модель" required>
+
+        <label for="vinCode">VIN-код:</label>
+        <input type="text" id="vinCode" name="vinCode" placeholder="Введите VIN (если известен)" maxlength="17">
+
+        <label for="partName">Наименование запчасти:</label>
+        <input type="text" id="partName" name="partName" placeholder="Например: Топливный насос, Турбина" required>
+
+        <label for="additionalInfo">Дополнительная информация:</label>
+        <textarea id="additionalInfoPart" name="additionalInfoPart" rows="5" placeholder="Опишите детально, что вам нужно"></textarea>
+
+
+        <div class="recaptcha-wrapper">
+    <div class="g-recaptcha" data-sitekey="6Ld6FzsrAAAAALXd59rn5NDWbNRMcHgZtcbSS1OP"></div>
+</div>
+
+        <button type="submit" class="submit-button">Отправить заявку</button>
+    </form>
+</section>
+
+
+</main>
+
+
+
+
+
+         <!-- Футер -->
+         <footer class="footer">
+            <div class="footer-bottom">
+                <p>&copy; 2025 Грузовой дизельный сервис. Все права защищены.</p>
+            </div>
+        </footer>
+
+    </div>
+ 
+
+    
+</body>
+
+
+</html>

@@ -1,0 +1,61 @@
+# Запрет прямого доступа к .env и .php
+# <FilesMatch "\.(env|php)$">
+#    Order Allow,Deny
+#    Deny from all
+# </FilesMatch>
+
+# Запрет прямого доступа к main.js
+# <Files "main.js">
+#     Order Allow,Deny
+#     Deny from all
+# </Files>
+
+RewriteEngine On
+
+# === РЕДИРЕКТЫ С .html НА ЧПУ ===
+RewriteCond %{THE_REQUEST} \s/index\.html [NC]
+RewriteRule ^index\.html$ /home? [R=301,L]
+
+RewriteCond %{THE_REQUEST} \s/about\.html [NC]
+RewriteRule ^about.html$ /about? [R=301,L]
+
+RewriteCond %{THE_REQUEST} \s/contacts\.html [NC]
+RewriteRule ^contacts.html$ /contacts? [R=301,L]
+
+RewriteCond %{THE_REQUEST} \s/order-parts\.html [NC]
+RewriteRule ^order-parts.html$ /order-parts? [R=301,L]
+
+RewriteCond %{THE_REQUEST} \s/diagnostic\.html [NC]
+RewriteRule ^diagnostic.html$ /diagnostic? [R=301,L]
+
+# === ПЕРЕПИСЫВАНИЕ ЧПУ В ФАЙЛЫ ===
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^home$ /index.html [L]
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^about$ /about.html [L]
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^contacts$ /contacts.html [L]
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^order-parts$ /order-parts.html [L]
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^diagnostic$ /diagnostic.html [L]
+
+
+
+; RewriteEngine On
+; RewriteCond %{HTTPS} off
+; RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI}   [L,R=301]
+
+; # Заголовки безопасности
+; <IfModule mod_headers.c>
+;     Header always set X-Content-Type-Options "nosniff"
+;     Header always set X-Frame-Options "DENY"
